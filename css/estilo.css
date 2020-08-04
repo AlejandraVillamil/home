@@ -1,0 +1,8 @@
+/* query movil */
+@media screen and (max-width: 600px) {
+    .col{
+        padding:5em; 
+        margin:0px; 
+        background-color:lightgray;
+    }
+}
