@@ -44,7 +44,7 @@
     <section class="page-section bg-primary" id="about"style="padding:3rem;"></section>
 
          <!----------------------------------------------- INICIO MENÚ------------------------------------------------------>
-         <body id="page-top"onload="loadProduct()">
+         <body id="page-top"onload="loadProduct()" onload="limpiarFormulario()" >
          <!-- Navigation-->
 
 
@@ -75,36 +75,119 @@
         <div class="container" style="max-width:100%">
             <div class="row" style="text-align:center;">
                 <!-- Elementos generados a partir del JSON -->
-                <main id="items" class="col-sm-9 row" style="padding-top::3rem"></main>
+                <main id="items" class="col-sm-9 row" style="padding-top:3rem; margin-left:5vw"></main>
                 <!-- Carrito -->
-                <aside class="col" style="padding-top:10em margin-left:0px; background-color:lightgray;">
+                <aside class="col" style="padding-top:10em margin-left:0px; background-color:lightgray">
                     <h2 style="padding-top:4rem">Carrito</h2>
                     <!-- Elementos del carrito -->
-                    <ul id="carrito" class="list-group" style="padding-top::3rem"></ul>
+                    <ul id="carrito" class="list-group" style="padding-top:3rem"></ul>
                     <hr>
                     <!-- Precio total -->
+                    <p class="text-right">Subtotal: <span id="stotal"></span> COP</p>
+                    <p class="text-right">Domicilio: <span id="domicilio"></span> COP</p>
                     <p class="text-right">Total: <span id="total"></span> COP</p>
                     <div class=”row”>
-                        <div class=”col-lg-3 col-md-4 col-sm-6 col-xs-12″> 
+                        
                     <button id="boton-vaciar" class="btn btn-secondary btn-lg active">Vaciar</button>
-                </div>             
-                   <div class=”col-lg-3 col-md-4 col-sm-6 col-xs-12″> 
-                       <form  action="https://checkout.wompi.co/p/" method="GET" onclick="checkout()" >
-                         <!-- OBLIGATORIOS -->
-                        <input type="hidden" name="public-key" value="pub_test_zltBr0WE6CliEf0F73lgDeAgkPZu4QPC" />
+                         
+                     <!-------------------------------- PASARELA DE PAGO --------------------------------------------->
+                     <form name='form1' action="https://checkout.wompi.co/p/"  method="GET" style="padding:1vw;">
+                       <!-- OBLIGATORIOS -->
+                       <input type="hidden" name="public-key" value="pub_test_zltBr0WE6CliEf0F73lgDeAgkPZu4QPC" />
                         <input type="hidden" name="currency" value="COP" />
-                        <input type="hidden"  name="amount-in-cents" value=''/>
+                        <input type="hidden"  id="totalpago" name="amount-in-cents" value=''/>
                         <input type="hidden" name="reference" value="ahkjfhdgsiughrA321" />
-                        <!-- OPCIONALES -->
-                        <input type="hidden" name="redirect-url" value="file:///C:/Users/akale/Desktop/eraseunavezpasteleria/pedido/pedido.html" />
-                        <button type="btn btn-secondary btn-lg active"style="background-color: #162238; color:white; padding: 0.5rem 1rem;
-                        font-size: 1.25rem;
-                        line-height: 1.5;
-                        border-radius: 0.3rem;">Pagar</button>
-                                          
-                     </form>
-                    </div> 
-                    </div>
+                         <!-- OPCIONALES -->
+                         <input type="hidden" name="redirect-url" value="file:///C:/xampp/htdocs/home/pedido/pedido.html" /> 
+                         <button type="submit" value="Enviar"  style="background-color: #162238; border-color: #162238; color:white; padding: 0.5rem 1rem; font-size: 1.25rem; line-height: 1.5; border-radius: 0.3rem;">Pagar</button>
+                                              
+                         <!-------------------------------- FIN PASARELA DE PAGO --------------------------------------------->
+                         </form>
+                    
+
+
+                        <!---------------------------------- DETALLE DEL PEDIDO ------------------------------------------>
+                        <form name='form1' action="pedido.php" method="post">
+                            <input type="hidden"  id="total1" name="total1" value=''/>
+                            <div class="card-body p-3">
+                                <p style="text-align:center;">------</p>
+                                <p style="text-align:center;font-size: 0.8vw;">INFORMACIÓN DEL PEDIDO</p>
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">                                       
+                                            <input type="text" style="font-size: 0.8vw;" class="form-control" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">
+                                            <input type="email" style="font-size: 0.8vw;"class="form-control" id="email" name="email" placeholder="ejemplo@gmail.com" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">
+                                            <input type="tel" style="font-size: 0.8vw;"class="form-control" id="telefono" name="telefono" placeholder="Teléfono de contacto" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group mb-2">
+                                            <input type="street" style="font-size: 0.8vw;"class="form-control" id="direccion" name="direccion" placeholder="Dirección de entrega" required>
+                                        </div>
+                                    </div>
+                                <p style="text-align:center;">------</p>
+                                <p style="text-align:center; font-size:.8vw">PERSONALIZAR PEDIDO<i>(Opcional)</i></p>
+                                
+                                <div class="form-group">
+                                    <div class="input-group mb-2">
+                                    <select style="font-size: 0.8vw;" class="custom-select custom-select-sm" name="nivel" id="nivel" >
+                                        <option selected>¿Qué tan dulce quieres tu pedido?</option>
+                                        <option value="1">Muy bajo</option>
+                                        <option value="2">Bajo</option>
+                                        <option value="3">Medio</option>
+                                        <option value="3">Normal</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-2">
+                                        <select style="font-size: 0.8vw;"class="custom-select custom-select-sm" name="endulzante" id="endulzante">
+                                            <option selected>¿Qué endulzante quieres que usemos?</option>
+                                            <option value="1">Estevia</option>
+                                            <option value="2">Fructosa</option>
+                                            <option value="3">Eritinol</option>
+                                            <option value="4">Azúcar de coco</option>
+                                            <option value="5">Panela</option>
+                                            <option value="6">Azúcar refinada</option>
+                                        </select>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-2">
+                                        <select style="font-size: 0.8vw;" class="custom-select custom-select-sm"name="harina" id="harina">
+                                            <option selected>¿Qué harina quieres que usemos?</option>
+                                            <option value="1">Harina de avena</option>
+                                            <option value="2">Harina de lenteja</option>
+                                            <option value="3">Harina de garbanzo</option>
+                                            <option value="2">Harina de arroz</option>
+                                            <option value="3">Harina de coco</option>
+                                            <option value="3">Fécula de maíz</option>
+                                            <option value="3">Harina de trigo</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-2">
+                                        <textarea style="font-size: 0.8vw;" class="form-control" id="mensaje" name="mensaje" placeholder="Detalle de tu pedido"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="Enviar" class="btn btn-secondary btn-block rounded-0 py-2">
+                                </div>
+                            </div>
+                        </form>
+                     <!-- FIN DETALLE DEL PEDIDO -->  
+
+
+
                 </aside>
 
             </div>
