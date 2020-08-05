@@ -7,7 +7,8 @@ $direccion = $_POST['direccion'];
 $nivel = $_POST['nivel'];
 $endulzante = $_POST['endulzante'];
 $harina = $_POST['harina'];
-//amount-in-cents = $_POST['amount-in-cents'];
+$total1 = $_POST['total1'];
+
 
 $header = 'From: ' . $mail . " \r\n";
 $header .= "X-Mailer: PHP/" . phpversion() . " \r\n";
@@ -32,6 +33,6 @@ $para = 'eraseunavezpasteleria@gmail.com';
 $asunto = 'Pre-orden';
 
 mail($para, $asunto, utf8_decode($mensaje),$header);
-header("Location:pedido.html");
+header("Location:out.html");
 
 ?>
