@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta charset="utf-8" />
+        <!-- SEO-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta property="og:title" content="Érase una vez" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content="./assets/img/bg-masthead.jpg" />
+        <meta property="og:description" content="Disfruta lo dulce de la vida, sin azúcar." />
+        <meta name="description" content="Endulza tu paladar con nuestros deliciosos productos elaborados artesanalmente y sin azúcar. Permite que nuestros sabores acompañen tus momentos especiales para que hagamos parte de tus más preciadas historias. Detrás de cada sabor hay una historia ¿Cuál es la tuya?.">
+        <meta name="author" content="" />
+        <meta name="keywords" content="pastelería, artesanal, sugar free, sin azúcar, saludable, tortas, postres, panadería, pasabocas, estevia, fructosa, panela, eritinol, harina, trigo, avena, coco, garbanzo, lenteja, arroz, maíz, gelatinas, mousses, bajo en grasa, sabores, rellenos, chocolate, banano, zanahoria, decorado, azúcar"/>
+        <title>Pedidos</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+        <!--ICOMOON-->
+        <link rel="stylesheet" href="../css/icomoon/style.css">
+        <!--Conexión a la DB-->
+        <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+        <script src="../js/app.js"></script>
+        <script src="../js/eraseunavez.js"></script>
+        <!--Firebase-->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+        <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
+
+    </head>
+<body>
+<div>
+  <!---------------------------------- DETALLE DEL PEDIDO ------------------------------------------>
+  <form name='form1' action="pedido.php" method="post">
+    <input type="hidden"  id="total1" name="total1" value=''/>
+    <div class="card-body p-3">
+
+        <p style="text-align:center;font-size: 3.5vw;">INFORMACIÓN DEL PEDIDO</p>
+            <div class="form-group">
+                <div class="input-group mb-2">                                       
+                    <input type="text" style="font-size: 3.5vw;" class="form-control" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group mb-2">
+                    <input type="email" style="font-size: 3.5vw;"class="form-control" id="email" name="email" placeholder="ejemplo@gmail.com" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group mb-2">
+                    <input type="tel" style="font-size: 3.5vw;"class="form-control" id="telefono" name="telefono" placeholder="Teléfono de contacto" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group mb-2">
+                    <input type="street" style="font-size: 3.5vw;"class="form-control" id="direccion" name="direccion" placeholder="Dirección de entrega" required>
+                </div>
+            </div>
+        <p style="text-align:center; font-size:3.5vw">PERSONALIZAR PEDIDO<i>(Opcional)</i></p>
+        
+        <div class="form-group">
+            <div class="input-group mb-2">
+            <select style="font-size: 3.5vw;" class="custom-select custom-select-sm" name="nivel" id="nivel" >
+                <option selected>¿Qué tan dulce quieres tu pedido?</option>
+                <option value="1">Muy bajo</option>
+                <option value="2">Bajo</option>
+                <option value="3">Medio</option>
+                <option value="3">Normal</option>
+              </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group mb-2">
+                <select style="font-size: 3.5vw;"class="custom-select custom-select-sm" name="endulzante" id="endulzante">
+                    <option selected>¿Qué endulzante quieres que usemos?</option>
+                    <option value="1">Estevia</option>
+                    <option value="2">Fructosa</option>
+                    <option value="3">Eritinol</option>
+                    <option value="4">Azúcar de coco</option>
+                    <option value="5">Panela</option>
+                    <option value="6">Azúcar refinada</option>
+                </select>
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group mb-2">
+                <select style="font-size: 3.5vw;" class="custom-select custom-select-sm"name="harina" id="harina">
+                    <option selected>¿Qué harina quieres que usemos?</option>
+                    <option value="1">Harina de avena</option>
+                    <option value="2">Harina de lenteja</option>
+                    <option value="3">Harina de garbanzo</option>
+                    <option value="2">Harina de arroz</option>
+                    <option value="3">Harina de coco</option>
+                    <option value="3">Fécula de maíz</option>
+                    <option value="3">Harina de trigo</option>
+              </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group mb-2">
+                <textarea style="font-size: 3.5vw;" class="form-control" id="mensaje" name="mensaje" placeholder="Detalle de tu pedido"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Enviar" style="font-size: 3.5vw;"  class="btn btn-secondary btn-block rounded-0 py-2">
+        </div>
+    </div>
+</form>
+</div>
+<!-- FIN DETALLE DEL PEDIDO -->  
+        
+</body>
+
+</html>
