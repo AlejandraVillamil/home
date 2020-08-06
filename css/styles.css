@@ -215,7 +215,6 @@ img {
   vertical-align: middle;
   border-style: none;
   font-size: 64px
-
 }
 
 svg {
@@ -10230,25 +10229,27 @@ font-size:1em;
 font-style: italic;
 }
 
-.calltoaction1{
-  color:rgba(255, 255, 255, 0.5) !important;
-  font-size:1em;
-  font-style: italic;
-  }
+.producto{
+  font-size: 1.2em;
 
-
+}
   .descripcion{
     font-size: .8em;
     color: #6c757d !important;
   }
   
+  .pricebox.{
+    margin-top: 0 !important;
+    margin-bottom: 0.4rem !important;
+  }
+
   .precio{
-    font-size:1.4em;
-    color: #6c757d !important;
+    font-size:2em;
+    color: #162238 !important;
   }
 
   .tamano{
-    font-size:1.6em;
+    font-size:.8em;
     color: #6c757d !important;
   }
 /*Correción color*/
@@ -10305,5 +10306,3 @@ font-style: italic;
     .vinculo{
       color: #757a7a !important;
     }
-
-    
