@@ -5,4 +5,12 @@
         margin:0px; 
         background-color:lightgray;
     }
+
+       
+
+    .detalle{
+        padding: 1vw;
+        width: 10em;
+        height: 40px;
+    }
 }
