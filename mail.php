@@ -20,4 +20,3 @@ mail($para, $asunto, utf8_decode($mensaje), $header);
 
 header("Location:index.html");
 ?>
-

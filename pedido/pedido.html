@@ -24,7 +24,6 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../css/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" href="../css/estilo.css">
         <!--ICOMOON-->
         <link rel="stylesheet" href="../css/icomoon/style.css">
         <!--Conexión a la DB-->
@@ -46,18 +45,13 @@
 
          <!----------------------------------------------- INICIO MENÚ------------------------------------------------------>
          <body id="page-top"onload="loadProduct()">
+            
          <!-- Navigation-->
-
-
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container">
           
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <img class="icono_" style="width:50px; height:50px;" src="../assets/img/favicon.png">
-            </a>
-
-            <a href="#Carro">
-                <img class="d-block d-sm-block d-md-none" src="../assets/img/Carrito.png" alt="" >
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -80,36 +74,41 @@
         <div class="container" style="max-width:100%">
             <div class="row" style="text-align:center;">
                 <!-- Elementos generados a partir del JSON -->
-                <main id="items" class="col-sm-9 row" style="padding-top::3rem"></main>
+                <main id="items" class="col-sm-9 row"style="padding-top:3rem; margin-left:5vw" >
+                </main>  
+
                 <!-- Carrito -->
-                <aside id="Carro" class="col" style="padding-top:10em margin-left:0px; background-color:lightgray;">
+                <aside class="col" style="padding-top:10em margin-left:0px; background-color:lightgray">
                     <h2 style="padding-top:4rem">Carrito</h2>
                     <!-- Elementos del carrito -->
-                    <ul id="carrito" class="list-group" style="padding-top::3rem"></ul>
+                    <ul id="carrito" class="list-group" style="padding-top:3rem"></ul>
                     <hr>
                     <!-- Precio total -->
+                    <p class="text-right">Subtotal: <span id="stotal"></span> COP</p>
+                    <p class="text-right">Domicilio: <span id="domicilio"></span> COP</p>
                     <p class="text-right">Total: <span id="total"></span> COP</p>
-                    <div class=”row”>
-                        <div class=”col-lg-3 col-md-4 col-sm-6 col-xs-12″> 
-                    <button id="boton-vaciar" class="btn btn-secondary btn-lg active">Vaciar</button>
-                </div>             
-                   <div class=”col-lg-3 col-md-4 col-sm-6 col-xs-12″> 
-                       <form  action="https://checkout.wompi.co/p/" method="GET" onclick="checkout()" >
-                         <!-- OBLIGATORIOS -->
-                        <input type="hidden" name="public-key" value="pub_test_zltBr0WE6CliEf0F73lgDeAgkPZu4QPC" />
-                        <input type="hidden" name="currency" value="COP" />
-                        <input type="hidden"  name="amount-in-cents" value=''/>
-                        <input type="hidden" name="reference" value="ahkjfhdgsiughrA321" />
-                        <!-- OPCIONALES -->
-                        <input type="hidden" name="redirect-url" value="file:///C:/Users/akale/Desktop/eraseunavezpasteleria/pedido/pedido.html" />
-                        <button type="btn btn-secondary btn-lg active"style="background-color: #162238; color:white; padding: 0.5rem 1rem;
-                        font-size: 1.25rem;
-                        line-height: 1.5;
-                        border-radius: 0.3rem;">Pagar</button>
-                                          
-                     </form>
-                    </div> 
-                    </div>
+                                                         
+                    <div class="row" >
+                        
+                    <button id="boton-vaciar" class="btn btn-secondary btn-lg active" style="border-color: rgb(153, 49, 49); background-color:rgb(153, 49, 49); margin-left: 2vw;";"><i class="fas fa-trash-alt"></i></button>
+                    
+               
+               <div><iframe src="detalle.html" style="border-style:none; padding:1vw;width: 21vw;height: 43vw;"></iframe></div></div>
+               <!-------------------------------- PASARELA DE PAGO --------------------------------------------->
+               <form name='form1' action="https://checkout.wompi.co/p/"  method="GET" style="padding:1vw;">                       
+                  <!-- OBLIGATORIOS -->
+                  <input type="hidden" name="public-key" value="pub_test_zltBr0WE6CliEf0F73lgDeAgkPZu4QPC" />
+                  <input type="hidden" name="currency" value="COP" />
+                  <input type="hidden"  id="totalpago" name="amount-in-cents" value=''/>
+                  <input type="hidden" name="reference" value="ahkjfhdgsiughrA321" />
+                   <!-- OPCIONALES -->
+                   <input type="hidden" name="redirect-url" value="pedido.html" /> 
+                   <button type="submit" value="Enviar"  style="background-color: #162238; border-color: #162238; color:white; padding: 0.5rem 1rem; font-size: 1.25rem; line-height: 1.5; border-radius: 0.3rem;">  Pagar  </button>
+                 
+                  </form> 
+                    <!-------------------------------- FIN PASARELA DE PAGO --------------------------------------------->
+
+
                 </aside>
 
             </div>
